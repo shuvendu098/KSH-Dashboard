@@ -1,0 +1,65 @@
+[
+    {
+        "label": "streamlit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "streamlit",
+        "description": "streamlit",
+        "detail": "streamlit",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "plotly.express",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "plotly.express",
+        "description": "plotly.express",
+        "detail": "plotly.express",
+        "documentation": {}
+    },
+    {
+        "label": "warnings",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "warnings",
+        "description": "warnings",
+        "detail": "warnings",
+        "documentation": {}
+    },
+    {
+        "label": "load_data_incoming",
+        "kind": 2,
+        "importPath": "KSH-Dashboard",
+        "description": "KSH-Dashboard",
+        "peekOfCode": "def load_data_incoming(file=None):\n    if file:\n        df = pd.read_csv(file)\n    else:\n        df = pd.read_csv(\"incoming.csv\")  # Default file\n    df['Date'] = pd.to_datetime(df['Date'])\n    return df\n# Streamlit App Configuration\nst.set_page_config(page_title=\"KSH Daily Dashboard\", layout=\"wide\", initial_sidebar_state=\"expanded\",page_icon=\":chart_with_upwards_trend:\")\nst.sidebar.image(\"ksh_265.png\", use_container_width=True, output_format=\"PNG\")",
+        "detail": "KSH-Dashboard",
+        "documentation": {}
+    },
+    {
+        "label": "uploaded_file",
+        "kind": 5,
+        "importPath": "KSH-Dashboard",
+        "description": "KSH-Dashboard",
+        "peekOfCode": "uploaded_file = st.sidebar.file_uploader(f\"Upload Data\",type=[\"csv\",\"tsv\",\"xlsx\"])\nfiltered_data = load_data_incoming(uploaded_file)\nif filtered_data is None:\n    st.warning(\"Please upload a valid file to proceed.\")\nelse:   \n        st.markdown(\"<h1 style='text-align: center;'>Inbound Report</h1>\", unsafe_allow_html=True)\n        st.markdown('<style>div.block-container{padding-top : 1.9rem;}</style>', unsafe_allow_html=True)\n     # Input for Start Date and End Date\n        col1, col2 = st.columns(2)\n        start_date = col1.date_input(\"Start Date\", min_value=filtered_data[\"Date\"].min(), max_value=filtered_data[\"Date\"].max(), value=filtered_data[\"Date\"].min())",
+        "detail": "KSH-Dashboard",
+        "documentation": {}
+    },
+    {
+        "label": "filtered_data",
+        "kind": 5,
+        "importPath": "KSH-Dashboard",
+        "description": "KSH-Dashboard",
+        "peekOfCode": "filtered_data = load_data_incoming(uploaded_file)\nif filtered_data is None:\n    st.warning(\"Please upload a valid file to proceed.\")\nelse:   \n        st.markdown(\"<h1 style='text-align: center;'>Inbound Report</h1>\", unsafe_allow_html=True)\n        st.markdown('<style>div.block-container{padding-top : 1.9rem;}</style>', unsafe_allow_html=True)\n     # Input for Start Date and End Date\n        col1, col2 = st.columns(2)\n        start_date = col1.date_input(\"Start Date\", min_value=filtered_data[\"Date\"].min(), max_value=filtered_data[\"Date\"].max(), value=filtered_data[\"Date\"].min())\n        end_date = col2.date_input(\"End Date\", min_value=filtered_data[\"Date\"].min(), max_value=filtered_data[\"Date\"].max(), value=filtered_data[\"Date\"].max())",
+        "detail": "KSH-Dashboard",
+        "documentation": {}
+    }
+]
